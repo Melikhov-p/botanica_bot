@@ -1,0 +1,14 @@
+{
+  "token": "6721215283:AAFCs2OFYZ9qA3Wf34rzFBhMnk338Htulc8",
+  "SUPERUSER": 370803163,
+  "admins": [
+    370803163,
+    777618906
+  ],
+  "contacts": {
+    "email": "botanicaflowers.25@yandex.ru",
+    "phone": "+7 (930) 086-90-08",
+    "address": "Белгород, Гражданский проспект 47"
+  },
+  "taxi_api_url": "https://3.redirect.appmetrica.yandex.com/route?end-lat=50.594458&end-lon=36.593256&tariffClass=econom&ref=yoursiteru&appmetrica_tracking_id=1178268795219780156"
+}

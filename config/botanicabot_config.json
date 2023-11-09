@@ -10,5 +10,9 @@
     "phone": "+7 (930) 086-90-08",
     "address": "Белгород, Гражданский проспект 47"
   },
+  "links": {
+    "vk": "https://vk.com/botanicaflowers",
+    "instagram": "https://www.instagram.com/botanicaflowers"
+  },
   "taxi_api_url": "https://3.redirect.appmetrica.yandex.com/route?end-lat=50.594458&end-lon=36.593256&tariffClass=econom&ref=yoursiteru&appmetrica_tracking_id=1178268795219780156"
 }

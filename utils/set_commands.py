@@ -5,6 +5,6 @@ async def set_default_commands(dp):
         [
             # types.BotCommand('start', 'Запустить бота'),
             types.BotCommand('menu', 'Вызвать основное меню'),
-            # types.BotCommand('cancel', 'Отмена')
+            types.BotCommand('cancel', 'Отмена / Выход из сценария')
         ]
     )

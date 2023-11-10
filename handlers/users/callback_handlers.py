@@ -26,7 +26,7 @@ async def process_callback_all_products(callback: types.CallbackQuery):
 
 @dp.callback_query_handler(ChatTypeFilter(chat_type=types.ChatType.PRIVATE), lambda callback: callback.data == 'get_taxi')
 async def process_callback_get_taxi(callback: types.CallbackQuery):
-    await bot.send_message(callback.from_user.id, f"Для вызова такси нажмите по кнопке ниже:",
+    await bot.send_message(callback.from_user.id, f"🚕 Для вызова такси нажмите по кнопке ниже 🚕 ",
                            parse_mode='html',
                            reply_markup=InlineKeyboardMarkup().add(InlineKeyboardButton('Проложить маршрут', url=config['taxi_api_url'])))
 

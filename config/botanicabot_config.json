@@ -1,10 +1,15 @@
 {
-  "token": "BOT_TOKEN",
+  "token": "6721215283:AAFCs2OFYZ9qA3Wf34rzFBhMnk338Htulc8",
   "SUPERUSER": 370803163,
   "admins": [
     370803163,
     777618906
   ],
+  "moders": [
+    370803163,
+    777618906
+  ],
+  "channel_id": -1002096743082,
   "contacts": {
     "email": "botanicaflowers.25@yandex.ru",
     "phone": "+7 (930) 086-90-08",

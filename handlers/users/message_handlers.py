@@ -23,3 +23,4 @@ async def message_communication(message: types.Message):
         await send_log('WARNING', message.from_user.username, 'Неизвестный запрос | Сообщение: {}'.format(message.text))
         await bot.send_message(message.from_user.id, f"К сожалению, я не знаю, что на это ответить, попробуйте найти, что вас интересует в меню.", parse_mode='html')
         await process_start_command(message)
+

@@ -19,3 +19,25 @@ inline_confirm = InlineKeyboardButton('Да', callback_data='confirm_yes')
 inline_reject = InlineKeyboardButton('Нет', callback_data='confirm_no')
 inline_confirm_reject_kb = InlineKeyboardMarkup(row_width=2)
 inline_confirm_reject_kb.add(inline_confirm, inline_reject)
+
+
+# Клавиатура Модераторов
+inline_send_post = InlineKeyboardButton('Отправить пост', callback_data='create_post')
+inline_moder_keyboard = InlineKeyboardMarkup(row_width=1)
+inline_moder_keyboard.add(inline_send_post)
+
+
+# Клавиатура создания поста
+inline_post_photo = InlineKeyboardButton('Добавить фото', callback_data='post_photo')
+inline_post_title = InlineKeyboardButton('Добавить заголовок', callback_data='post_title')
+inline_post_description = InlineKeyboardButton('Добавить описание', callback_data='post_description')
+inline_post_price = InlineKeyboardButton('Добавить цену', callback_data='post_price')
+inline_post_preview = InlineKeyboardButton('Предпросмотр', callback_data='post_preview')
+inline_post_confirm_send = InlineKeyboardMarkup(row_width=1)
+inline_post_confirm_send.add(inline_post_photo, inline_post_title, inline_post_description, inline_post_price, inline_post_preview)
+
+
+# Клавиатура для постов в канале
+inline_channel_preorder_btn = InlineKeyboardButton('Предзаказ', callback_data='preorder')
+inline_channel_post_keyboard = InlineKeyboardMarkup(row_width=1)
+inline_channel_post_keyboard.add(inline_channel_preorder_btn)

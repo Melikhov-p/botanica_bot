@@ -11,3 +11,11 @@ class OrderState(StatesGroup):
     delivery_recipient = State()
     contact = State()
     confirm = State()
+
+
+class ReportState(StatesGroup):
+    report = State()
+
+
+class AskQuestionState(StatesGroup):
+    question = State()

@@ -1,7 +1,8 @@
 {
   "token": "6721215283:AAFCs2OFYZ9qA3Wf34rzFBhMnk338Htulc8",
   "bot_id": 6721215283,
-  "SUPERUSER": 370803163,
+  "superuser": 370803163,
+  "moders_chat": -4033243247,
   "admins": [
     370803163,
     777618906

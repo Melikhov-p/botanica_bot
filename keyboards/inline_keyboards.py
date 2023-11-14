@@ -7,11 +7,12 @@ from loader import config
 inline_make_order = InlineKeyboardButton('📫 Сделать заказ 📫', callback_data='make_order')
 inline_contacts = InlineKeyboardButton('☎ Поделиться контактами ☎', callback_data='contacts')
 inline_get_taxi = InlineKeyboardButton('🚕 Вызвать такси до магазина 🚕', callback_data='get_taxi')
-inline_report = InlineKeyboardButton('❗ Возникли проблемы ❗', callback_data='report')
+inline_ask_question = InlineKeyboardButton('❓ Задать свой вопрос ❓', callback_data='ask_question')
+inline_report = InlineKeyboardButton('❗ Возникли проблемы с ботом ❗', callback_data='report')
 vk_button = InlineKeyboardButton('VK', url=config['links']['vk'])
 inst_button = InlineKeyboardButton('Instagram', url=config['links']['instagram'])
 inline_main_menu = InlineKeyboardMarkup(row_width=1)
-inline_main_menu.add(inline_make_order, inline_contacts, inline_get_taxi).row(vk_button, inst_button)
+inline_main_menu.add(inline_make_order, inline_contacts, inline_get_taxi, inline_ask_question, inline_report).row(vk_button, inst_button)
 
 
 # Клавиатура Подтверждение/Отмена
@@ -41,3 +42,6 @@ inline_post_confirm_send.add(inline_post_photo, inline_post_title, inline_post_d
 inline_channel_preorder_btn = InlineKeyboardButton('Предзаказ', callback_data='channel_preorder')
 inline_channel_post_keyboard = InlineKeyboardMarkup(row_width=1)
 inline_channel_post_keyboard.add(inline_channel_preorder_btn)
+
+
+

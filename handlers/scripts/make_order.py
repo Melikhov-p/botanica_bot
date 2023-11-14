@@ -93,19 +93,18 @@ async def process_message_confirm_order(message: types.Message, state: FSMContex
 async def process_order_confirmed(callback: types.CallbackQuery, state: FSMContext):
     await state.update_data(confirm=callback.data)
     order_data = await state.get_data()
-    for admin in config['admins']:
-        if order_data['is_products_photo']:
-            await bot.send_photo(admin, photo=order_data['products'], caption=f"🔴 Новый заказ 🔴 : @{callback.from_user.username} : {callback.from_user.id}\n\n"
-                                                                              f"📦 Состав заказа: <u>по фото</u>\n\n"
-                                                                              f"➡️ Заказ должен быть готов {order_data['ready_date']}\n\n"
-                                                                              f"🚕 Доставка {order_data['delivery']} {order_data['delivery_address']} {order_data['delivery_recipient']}\n\n"
-                                                                              f"📞 Контактный номер: {order_data['contact']}", parse_mode='html')
-        else:
-            await bot.send_message(admin, f"🔴 Новый заказ 🔴 : @{callback.from_user.username} : {callback.from_user.id}\n\n"
-                                          f"📦 Состав заказа: {order_data['products']}\n\n"
-                                          f"➡️ Заказ должен быть готов {order_data['ready_date']}\n\n"
-                                          f"🚕 Доставка {order_data['delivery']} {order_data['delivery_address']} {order_data['delivery_recipient']}\n\n"
-                                          f"📞 Контактный номер: {order_data['contact']}", parse_mode='html')
+    if order_data['is_products_photo']:
+        await bot.send_photo(config['moders_chat'], photo=order_data['products'], caption=f"🔴 Новый заказ 🔴 : @{callback.from_user.username} : {callback.from_user.id}\n\n"
+                                                                                          f"📦 Состав заказа: <u>по фото</u>\n\n"
+                                                                                          f"➡️ Заказ должен быть готов {order_data['ready_date']}\n\n"
+                                                                                          f"🚕 Доставка {order_data['delivery']} {order_data['delivery_address']} {order_data['delivery_recipient']}\n\n"
+                                                                                          f"📞 Контактный номер: {order_data['contact']}", parse_mode='html')
+    else:
+        await bot.send_message(config['moders_chat'], f"🔴 Новый заказ 🔴 : @{callback.from_user.username} : {callback.from_user.id}\n\n"
+                                                      f"📦 Состав заказа: {order_data['products']}\n\n"
+                                                      f"➡️ Заказ должен быть готов {order_data['ready_date']}\n\n"
+                                                      f"🚕 Доставка {order_data['delivery']} {order_data['delivery_address']} {order_data['delivery_recipient']}\n\n"
+                                                      f"📞 Контактный номер: {order_data['contact']}", parse_mode='html')
     await bot.send_message(callback.from_user.id, 'Заказ успешно создан, скоро с вами свяжутся для подтверждения.\n\n'
                                                   'Для возврата в меню /menu', parse_mode='html')
     await send_log('INFO', callback.from_user.username, 'Создал заказ')

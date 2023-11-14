@@ -16,3 +16,4 @@ async def command_send_msg(message: types.Message):
         user_info = await bot.get_chat_member(command_args[0], command_args[0])
         await bot.send_message(command_args[0], command_args[1])
         await send_log('ADMIN', message.from_user.username, f"Отправил через бота сообщение пользователю @{user_info['user']['username']}: {command_args[1]}")
+

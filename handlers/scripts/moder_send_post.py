@@ -97,6 +97,6 @@ async def moders_callback_post_preview(callback: types.CallbackQuery, state: FSM
 @dp.callback_query_handler(lambda c: c.data == 'send_post_to_channel', ChatTypeFilter(chat_type=types.ChatType.PRIVATE), chat_id=config['moders'], state='*')
 async def moders_callback_send_post_to_channel(callback: types.CallbackQuery, state: FSMContext):
     post_data = await state.get_data()
-    await bot.send_photo(callback.from_user.id, photo=post_data['photo'], caption=f"<b>{post_data.get('title', '')}</b>\n\n"
-                                                                                  f"<i>{post_data.get('description', '')}</i>\n\n"
-                                                                                  f"<b>{post_data.get('price', '')}</b> ₽", parse_mode='html', reply_markup=inline_channel_post_keyboard)
+    await bot.send_photo(config['channel_id'], photo=post_data['photo'], caption=f"<b>{post_data.get('title', '')}</b>\n\n"
+                                                                                 f"<i>{post_data.get('description', '')}</i>\n\n"
+                                                                                 f"<b>{post_data.get('price', '')}</b> ₽", parse_mode='html', reply_markup=inline_channel_post_keyboard)

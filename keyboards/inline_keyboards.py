@@ -38,6 +38,6 @@ inline_post_confirm_send.add(inline_post_photo, inline_post_title, inline_post_d
 
 
 # Клавиатура для постов в канале
-inline_channel_preorder_btn = InlineKeyboardButton('Предзаказ', callback_data='preorder')
+inline_channel_preorder_btn = InlineKeyboardButton('Предзаказ', callback_data='channel_preorder')
 inline_channel_post_keyboard = InlineKeyboardMarkup(row_width=1)
 inline_channel_post_keyboard.add(inline_channel_preorder_btn)

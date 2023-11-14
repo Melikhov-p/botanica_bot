@@ -7,7 +7,7 @@ from utils.logger import send_log
 
 
 @dp.message_handler(ChatTypeFilter(chat_type=types.ChatType.PRIVATE), chat_id=config['SUPERUSER'], commands=['send_msg'])
-async def command_send_msg(message: types.Message):
+async def admin_command_send_msg(message: types.Message):
     command_args = message.get_args().split('|')
     if len(command_args) != 2:
         await send_log('ADMIN_WARNING', message.from_user.username, 'Неизвестный формат команды | Сообщение: {}'.format(message.text))

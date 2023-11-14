@@ -7,9 +7,14 @@ import logging
 from utils.logger import send_log
 from loader import dp, bot
 from utils.set_commands import set_default_commands
+# MESSAGE handlers
 # ADMIN Handlers
 from handlers.admin import command_handlers
 from handlers.scripts import moder_send_post
+# MODERS Handlers
+from handlers.moderators import command_handlers
+# CHANNEL Handlers
+from handlers.channel import callback_handlers
 # USER Handlers
 from handlers.users import command_handlers, callback_handlers
 from handlers.scripts import make_order

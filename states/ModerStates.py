@@ -5,6 +5,6 @@ from aiogram.dispatcher.filters.state import StatesGroup, State
 class PostState(StatesGroup):
     photo = State()
     title = State()
-    description = State()
+    # description = State()
     price = State()
     confirm = State()

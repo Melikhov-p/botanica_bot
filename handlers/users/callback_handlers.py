@@ -3,7 +3,7 @@ import re
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import ChatTypeFilter
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-
+from utils.logger import send_log
 from keyboards.inline_keyboards import inline_main_menu
 from loader import dp, bot, config
 from aiogram import types
@@ -11,6 +11,7 @@ from aiogram import types
 
 @dp.callback_query_handler(ChatTypeFilter(chat_type=types.ChatType.PRIVATE), lambda callback: callback.data == 'contacts')
 async def process_callback_contacts(callback: types.CallbackQuery):
+    await send_log('INFO', callback.from_user.username, 'Запросил контакты')
     await bot.send_message(callback.from_user.id, f"Способы связи:\n\n"
                                                   f"📞 <b>Телефон</b>: {config['contacts']['phone']}\n\n"
                                                   f"📧 <b>Email</b>: {config['contacts']['email']}\n\n"
@@ -26,6 +27,7 @@ async def process_callback_all_products(callback: types.CallbackQuery):
 
 @dp.callback_query_handler(ChatTypeFilter(chat_type=types.ChatType.PRIVATE), lambda callback: callback.data == 'get_taxi')
 async def process_callback_get_taxi(callback: types.CallbackQuery):
+    await send_log('INFO', callback.from_user.username, 'Выбрал вызов такси')
     await bot.send_message(callback.from_user.id, f"🚕 Для вызова такси нажмите по кнопке ниже 🚕 ",
                            parse_mode='html',
                            reply_markup=InlineKeyboardMarkup().add(InlineKeyboardButton('Проложить маршрут', url=config['taxi_api_url'])))

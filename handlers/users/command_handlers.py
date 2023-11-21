@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 
 from aiogram.dispatcher.filters import ChatTypeFilter
 from aiogram.dispatcher import FSMContext
@@ -11,6 +12,20 @@ from utils.logger import send_log
 
 @dp.message_handler(ChatTypeFilter(chat_type=types.ChatType.PRIVATE), commands=['start', 'menu'])
 async def process_start_command(message: types.Message):
+    try:
+        with open('users.json', 'r') as f:
+            users = json.load(f)
+            if str(message.from_user.id) not in list(users.keys()):
+                users[str(message.from_user.id)] = {'username': message.from_user.username, 'last_seen': datetime.now().strftime("%Y-%m-%d %H:%M")}
+            else:
+                users[str(message.from_user.id)]['last_seen'] = datetime.now().strftime("%Y-%m-%d %H:%M")
+            f.close()
+            with open('users.json', 'w') as wf:
+                json.dump(users, wf, indent=4)
+                f.close()
+        await send_log('INFO', message.from_user.username, 'Добавлен новый пользователь')
+    except Exception as e:
+        await send_log('ERROR', message.from_user.username, f'Ошибка при добавлении нового пользователя: {str(e)}')
     if message.text == '/start':
         await send_log('INFO', message.from_user.username, 'Запустил бота')
     await bot.send_message(message.from_user.id, f"🌸 Я Botanica Bot 🌸\n\n"

@@ -12,6 +12,8 @@ from handlers.admin import command_handlers
 from handlers.scripts import moder_send_post
 # MODERS Handlers
 from handlers.moderators import command_handlers
+# MODERS CHAT Handlers
+from handlers.moders_chat import callback_handlers
 # CHANNEL Handlers
 from handlers.channel import callback_handlers
 # USER Handlers

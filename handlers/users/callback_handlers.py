@@ -56,7 +56,7 @@ async def user_callback_ask_question(callback: types.CallbackQuery):
     await AskQuestionState.question.set()
 @dp.message_handler(ChatTypeFilter(chat_type=types.ChatType.PRIVATE), state=AskQuestionState.question)
 async def user_message_get_question(message: types.Message, state: FSMContext):
-    await bot.send_message(message.from_user.id, f"Ваш вопрос отправлен модераторам", parse_mode='html')
+    await bot.send_message(message.from_user.id, f"Ваш вопрос отправлен модераторам, скоро с вами свяжутся.", parse_mode='html')
     await bot.send_message(config['moders_chat'], f"❓ Вопрос от @{message.from_user.username} ({message.from_user.id})\n\n"
                                                   f"{message.text}", parse_mode='html')
     await send_log('INFO', message.from_user.username, 'Отправлен вопрос модераторам {}'.format(message.text))

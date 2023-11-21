@@ -24,8 +24,9 @@ inline_confirm_reject_kb.add(inline_confirm, inline_reject)
 
 # Клавиатура Модераторов
 inline_send_post = InlineKeyboardButton('Отправить пост', callback_data='create_post')
+inline_mailing = InlineKeyboardButton('Отправить рассылку', callback_data='mailing')
 inline_moder_keyboard = InlineKeyboardMarkup(row_width=1)
-inline_moder_keyboard.add(inline_send_post)
+inline_moder_keyboard.add(inline_send_post, inline_mailing)
 
 
 # Клавиатура создания поста

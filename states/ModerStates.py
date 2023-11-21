@@ -9,3 +9,5 @@ class PostState(StatesGroup):
     price = State()
     confirm = State()
 
+class MailingState(StatesGroup):
+    message = State()

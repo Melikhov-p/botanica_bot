@@ -17,7 +17,6 @@ async def command_moder_menu(message: types.Message):
 async def command_moder_users(message: types.Message):
     with open('users.json', 'r') as f:
         users = json.load(f)
-        print(users)
         users_string = "Количество пользователей: " + str(len(users)) + "\n---------------------\n"
         for user in list(users.keys()):
             users_string += f"{user} @{users[user]['username']}\n"

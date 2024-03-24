@@ -8,11 +8,34 @@ from aiogram import types
 from keyboards.inline_keyboards import inline_main_menu, inline_make_order
 from utils.logger import send_log
 import re, random
+import psycopg2
 
 
 @dp.message_handler(ChatTypeFilter(chat_type=types.ChatType.PRIVATE), content_types=['text'])
 async def message_communication(message: types.Message):
-    if re.findall(r'куп.*|заказ', message.text):
+    if re.findall(r'site@[0-9]*', message.text):
+        product_id = message.text.split('@')[1]
+        try:
+            conn = psycopg2.connect(
+                dbname='botanicaflowers',
+                user='botanica_web',
+                password='b0t@nic@',
+                host='localhost'
+            )
+            with conn.cursor() as cur:
+                cur.execute(f"SELECT * FROM goods_product WHERE id = '{product_id}'")
+                product = cur.fetchone()
+                if product:
+                    await send_log('SITE', message.from_user.username, 'Заказ с сайта | Сообщение: {}'.format(message.text))
+                    await bot.send_message(config['moders_chat'], f"🔴 Новый заказ от сайта🔴 : @{message.from_user.username} : {message.from_user.id}\n\n"
+                                                                  f"📦 Состав заказа: {product[1]}\n\n", parse_mode='html', reply_markup=InlineKeyboardMarkup().add(InlineKeyboardButton('Принят', callback_data='order_accepted')))
+                else:
+                    await send_log('ERROR', message.from_user.username, 'Не удалось найти товар с сайта | Сообщение: {}'.format(message.text))
+                    await bot.send_message(message.from_user.id, 'Не удалось найти товар', parse_mode='html')
+        except Exception as e:
+            print(str(e))
+
+    elif re.findall(r'куп.*|заказ', message.text):
         await send_log('INFO', message.from_user.username, 'Вопрос распознан | Тематика как заказать | Сообщение: {}'.format(message.text))
         await bot.send_message(message.from_user.id, f"Для заказа букета выберите в /menu кнопку Сделать заказ", parse_mode='html')
     elif re.findall(r'позвон.*|звон.*|контак.*|связ.*|пис.*', message.text):

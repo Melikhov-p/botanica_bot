@@ -104,9 +104,9 @@ async def process_order_confirmed(callback: types.CallbackQuery, state: FSMConte
                                                       f"📦 Состав заказа: {order_data['products']}\n\n"
                                                       f"➡️ Заказ должен быть готов {order_data['ready_date']}\n\n"
                                                       f"🚕 Доставка {order_data['delivery']} {order_data['delivery_address']} {order_data['delivery_recipient']}\n\n"
-                                                      f"📞 Контактный номер: {order_data['contact']}", parse_mode='html')
+                                                      f"📞 Контактный номер: {order_data['contact']}", parse_mode='html', reply_markup=InlineKeyboardMarkup().add(InlineKeyboardButton('Принят', callback_data='order_accepted')))
     await bot.send_message(callback.from_user.id, 'Заказ успешно создан, скоро с вами свяжутся для подтверждения.\n\n'
-                                                  'Для возврата в меню /menu', parse_mode='html', reply_markup=InlineKeyboardMarkup().add(InlineKeyboardButton('Принят', callback_data='order_accepted')))
+                                                  'Для возврата в меню /menu', parse_mode='html')
     await send_log('INFO', callback.from_user.username, 'Создал заказ')
     await state.finish()
 @dp.callback_query_handler(lambda c: c.data == 'confirm_no', ChatTypeFilter(chat_type=types.ChatType.PRIVATE), state=OrderState.confirm)  # Если окончательную информацию не подтвердили

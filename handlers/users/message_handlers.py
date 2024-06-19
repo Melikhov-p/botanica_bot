@@ -13,7 +13,12 @@ import psycopg2
 
 @dp.message_handler(ChatTypeFilter(chat_type=types.ChatType.PRIVATE), content_types=['text'])
 async def message_communication(message: types.Message):
-    if re.findall(r'site@[0-9]*', message.text):
+    if re.findall(r'Хочу букет дня', message.text):
+        await send_log('INFO', message.from_user.username, 'Вопрос распознан | Тематика букет дня | Сообщение: {}'.format(message.text))
+        await bot.send_message(config['moders_chat'], f"🔴 Новый заказ🔴 : @{message.from_user.username} : {message.from_user.id}\n\n"
+                                                      f"📦 Состав заказа: БУКЕТ ДНЯ\n\n", parse_mode='html', reply_markup=InlineKeyboardMarkup().add(InlineKeyboardButton('Принят', callback_data='order_accepted')))
+        await bot.send_message(message.from_user.id, f"Заказ на букет дня сформирован, скоро с вами свяжутся для подтверждения.", parse_mode='html')
+    elif re.findall(r'site@[0-9]*', message.text):
         product_id = message.text.split('@')[1]
         try:
             conn = psycopg2.connect(
